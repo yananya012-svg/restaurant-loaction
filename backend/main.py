@@ -6,10 +6,16 @@ import os
 app = FastAPI()
 
 # Load model
-script_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(script_dir, "model.pkl")
-with open(model_path, "rb") as f:
-    model, scaler = pickle.load(f)
+model = None
+scaler = None
+
+try:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(script_dir, "model.pkl")
+    with open(model_path, "rb") as f:
+        model, scaler = pickle.load(f)
+except Exception as e:
+    print(f"Warning: Could not load model: {e}")
 
 @app.get("/health")
 def health():

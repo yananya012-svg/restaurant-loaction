@@ -48,16 +48,33 @@ def predict(data: dict):
 
     return {"predicted_price": int(prediction[0])}
 
-# Serve static files from frontend folder
+# Serve frontend files
 frontend_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
-
-# Mount static files
-if os.path.exists(frontend_path):
-    app.mount("/static", StaticFiles(directory=frontend_path), name="static")
 
 @app.get("/")
 def root():
     index_path = os.path.join(frontend_path, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {"message": "Welcome to Restaurant Price Predictor API"}
+
+@app.get("/style.css")
+def get_style():
+    style_path = os.path.join(frontend_path, "style.css")
+    if os.path.exists(style_path):
+        return FileResponse(style_path, media_type="text/css")
+    return {"error": "style.css not found"}
+
+@app.get("/script.js")
+def get_script():
+    script_path = os.path.join(frontend_path, "script.js")
+    if os.path.exists(script_path):
+        return FileResponse(script_path, media_type="application/javascript")
+    return {"error": "script.js not found"}
+
+# Mount static files for any other static assets
+if os.path.exists(frontend_path):
+    app.mount("/static", StaticFiles(directory=frontend_path), name="static")
     if os.path.exists(index_path):
         return FileResponse(index_path, media_type="text/html")
     return {"message": "Welcome to Restaurant Price Predictor API"}

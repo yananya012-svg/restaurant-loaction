@@ -75,6 +75,3 @@ def get_script():
 # Mount static files for any other static assets
 if os.path.exists(frontend_path):
     app.mount("/static", StaticFiles(directory=frontend_path), name="static")
-    if os.path.exists(index_path):
-        return FileResponse(index_path, media_type="text/html")
-    return {"message": "Welcome to Restaurant Price Predictor API"}

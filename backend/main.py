@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 import pickle
 import numpy as np
+import os
 
 app = FastAPI()
 
 # Load model
-with open("model.pkl", "rb") as f:
+script_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(script_dir, "model.pkl")
+with open(model_path, "rb") as f:
     model, scaler = pickle.load(f)
 
 @app.get("/health")

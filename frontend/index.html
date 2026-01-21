@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Price Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurant Price Predictor</h1>
+        <form id="predictForm">
+            <input type="number" id="city" placeholder="City" required>
+            <input type="number" id="locality" placeholder="Locality" required>
+            <input type="number" id="cuisines" placeholder="Cuisines" required>
+            <input type="number" id="aggregate_rating" placeholder="Aggregate Rating" required>
+            <input type="number" id="votes" placeholder="Votes" required>
+            <button type="submit">Predict Price</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

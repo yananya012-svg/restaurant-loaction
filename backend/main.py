@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import pickle
 import numpy as np
 import os
@@ -45,3 +47,17 @@ def predict(data: dict):
     prediction = model.predict(scaled)
 
     return {"predicted_price": int(prediction[0])}
+
+# Serve static files from frontend folder
+frontend_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
+
+# Mount static files
+if os.path.exists(frontend_path):
+    app.mount("/static", StaticFiles(directory=frontend_path), name="static")
+
+@app.get("/")
+def root():
+    index_path = os.path.join(frontend_path, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {"message": "Welcome to Restaurant Price Predictor API"}

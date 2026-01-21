@@ -1,6 +1,4 @@
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:10000'
-    : 'https://' + window.location.hostname;
+const API_URL = window.location.origin;
 
 document.getElementById('predictForm').addEventListener('submit', async (e) => {
     e.preventDefault();

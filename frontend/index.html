@@ -7,18 +7,112 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Restaurant Price Predictor</h1>
-        <form id="predictForm">
-            <input type="number" id="city" placeholder="City" required>
-            <input type="number" id="locality" placeholder="Locality" required>
-            <input type="number" id="cuisines" placeholder="Cuisines" required>
-            <input type="number" id="aggregate_rating" placeholder="Aggregate Rating" required>
-            <input type="number" id="votes" placeholder="Votes" required>
-            <button type="submit">Predict Price</button>
-        </form>
-        <div id="result"></div>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <main class="main-container">
+        <div class="card-wrapper">
+            <div class="header-section">
+                <div class="icon-container">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <h1 class="title">Restaurant Price Predictor</h1>
+                <p class="subtitle">Predict restaurant prices based on key metrics</p>
+            </div>
+
+            <form id="predictForm" class="form-container">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="city">City Code</label>
+                        <input 
+                            type="number" 
+                            id="city" 
+                            placeholder="Enter city code" 
+                            required
+                            class="form-input"
+                        >
+                        <span class="input-hint">Numeric identifier for city</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locality">Locality Code</label>
+                        <input 
+                            type="number" 
+                            id="locality" 
+                            placeholder="Enter locality code" 
+                            required
+                            class="form-input"
+                        >
+                        <span class="input-hint">Specific area within city</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cuisines">Cuisines Type</label>
+                        <input 
+                            type="number" 
+                            id="cuisines" 
+                            placeholder="Enter cuisine type" 
+                            required
+                            class="form-input"
+                        >
+                        <span class="input-hint">Type of cuisines offered</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aggregate_rating">Aggregate Rating</label>
+                        <input 
+                            type="number" 
+                            id="aggregate_rating" 
+                            placeholder="0.0 - 5.0" 
+                            min="0"
+                            max="5"
+                            step="0.1"
+                            required
+                            class="form-input"
+                        >
+                        <span class="input-hint">Restaurant rating (0-5)</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="votes">Number of Votes</label>
+                        <input 
+                            type="number" 
+                            id="votes" 
+                            placeholder="Enter vote count" 
+                            required
+                            class="form-input"
+                        >
+                        <span class="input-hint">Total customer votes/reviews</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Predict Price</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+
+            <div id="result" class="result-container"></div>
+
+            <div class="info-section">
+                <h3>How it works</h3>
+                <ul class="info-list">
+                    <li><span class="step">1</span> Fill in the restaurant details</li>
+                    <li><span class="step">2</span> Our ML model analyzes the data</li>
+                    <li><span class="step">3</span> Get the predicted price instantly</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
+
